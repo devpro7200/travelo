@@ -43,7 +43,7 @@ class Vendor extends CI_Controller {
 	*/
 	public function index()
 	{
-		_adminLayout("dashboard");
+		_vendorLayout("dashboard");
 	}
 	/*
 	
@@ -59,7 +59,7 @@ class Vendor extends CI_Controller {
 	/**/
 	public function hotelList()
 	{
-		_adminLayout("hotelList");
+		_vendorLayout("hotelList");
 	}
 	/*  */
 	public function hotelRoom()
@@ -76,7 +76,7 @@ class Vendor extends CI_Controller {
 	public function userList()
 	{
 		
-		_adminLayout("userList");
+		_vendorLayout("userList");
 	}
 	
 
