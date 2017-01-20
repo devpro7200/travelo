@@ -86,20 +86,23 @@ class Auth extends CI_Controller {
 	  }
 	  else 
 	  {
+		  $msg='<h5 style="color:red">Sorry entered username/password is wrong</h5>';
+		  $this->session->set_flashdata('res',$msg);
 		  redirect(site_url()."/auth/");
 	  }
 	}
 	public function logout(){
-		
 		$userdata = array(
                    'username'  =>'',
                    'password'     =>'',
                    'auth' =>''
                );
         $this->session->unset_userdata($userdata);
-		$this->session->sess_destroy();
+		//$this->session->sess_destroy();
+		$msg='<h5 style="color:green">you are successfully logged out</h5>';
+		$this->session->set_flashdata('res',$msg);
 		redirect(site_url()."/auth");
-		
+		$this->session->sess_destroy();
 	}//end method
 }
 

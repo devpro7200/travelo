@@ -32,6 +32,9 @@
           <section class="login_content">
             <form action="<?php echo site_url();?>/auth/login" method="post">
               <h1>Login Form</h1>
+			  <?php 
+			   echo $this->session->flashdata('res');
+			  ?>
               <div>
                 <input type="text" name="username" class="form-control" placeholder="Username" required="" />
               </div>
