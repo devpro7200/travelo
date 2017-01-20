@@ -56,6 +56,7 @@ class Auth extends CI_Controller
 					   'username'  => $this->auth->userName,
 					   'password'  => $this->auth->userPassword,
 					   'userType'  =>$this->auth->userType,
+					   'userId'    =>$this->auth->userId,
 					   'auth' => TRUE
 				   );
 		  $this->session->set_userdata($userdata); 
@@ -86,6 +87,8 @@ class Auth extends CI_Controller
 		$userdata = array(
                    'username'  =>'',
                    'password'     =>'',
+				   'userType'  =>'',
+				   'userId'    =>'',
                    'auth' =>''
                );
         $this->session->unset_userdata($userdata);

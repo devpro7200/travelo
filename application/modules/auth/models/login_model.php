@@ -5,6 +5,7 @@ class Login_Model extends CI_Model
   public $userType;
   public $userName;
   public $userPassword;
+  public $userId;
   public function __construct()
     {
         // Call the Model constructor
@@ -23,6 +24,7 @@ class Login_Model extends CI_Model
 	$this->userName=$res->user_name;
 	$this->userPassword=$res->password;
 	$this->userType=$res->user_type;
+	$this->userId=$res->id;
 	return true;
 	}
     else 
