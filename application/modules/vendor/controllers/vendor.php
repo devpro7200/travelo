@@ -17,9 +17,25 @@ class Vendor extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function __construct(){
-		
+	public function __construct()
+	{
 		parent::__construct();
+		if(!$this->session->userdata('auth'))
+		{
+			redirect(site_url()."/auth/");
+		}
+		else if($this->session->userdata('auth')) 
+		{
+		  $userType=$this->session->userdata("userType");
+		  if($userType==1)
+		  {
+			 redirect(site_url()."/admin"); 
+		  }
+		 else if($userType==3)
+		  {
+			 redirect(site_url()."/user"); 
+		  }
+		}
 		$this->load->helper("layout_helper");
 	} 
 	/*

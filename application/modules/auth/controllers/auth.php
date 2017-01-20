@@ -1,21 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Auth extends CI_Controller {
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
+class Auth extends CI_Controller 
+{
+	/*
+	@package travel/auth
+	*/
 	public function Auth()
 	{
 	 parent::__construct();
@@ -91,6 +79,9 @@ class Auth extends CI_Controller {
 		  redirect(site_url()."/auth/");
 	  }
 	}
+	/*
+      @it's used to logout the user
+    */	
 	public function logout(){
 		$userdata = array(
                    'username'  =>'',
@@ -104,7 +95,7 @@ class Auth extends CI_Controller {
 		redirect(site_url()."/auth");
 		$this->session->sess_destroy();
 	}//end method
-}
+}//end class
 
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */
