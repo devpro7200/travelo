@@ -18,19 +18,48 @@ class Auth extends CI_Controller {
 	 */
 	public function Auth()
 	{
-
 	 parent::__construct();
 	}
 	public function index()
 	{
-		$this->load->view("login");
+		$authInfo=$this->session->all_userdata();
+		if(is_array($authInfo) && array_key_exists("auth",$authInfo))
+		{
+			if($authInfo['auth'])
+			{
+				$userType=$authInfo['userType'];
+				if($userType==1)
+				{
+				 redirect(site_url()."/admin/");	
+				}
+				else if($userType==2)
+				{
+				 redirect(site_url()."/vendor/");	
+				}
+				else if($userType==3)
+				{
+				 redirect(site_url()."/user/");	
+				}
+			}
+			else 
+			{
+				$this->load->view("login");
+			}
+		}
+		
+		else 
+		{
+		    $this->load->view("login");
+		}
     }	
     /*
       @it's used check weather the enter user exist or not if exist then make them login
     */	
 	public function login()
 	{
-      $username=$this->input->post("username");
+      
+	  
+	  $username=$this->input->post("username");
       $password=$this->input->post("password");	  
 	  $this->load->model("login_model","auth");
 	  if($this->auth->userExists($username,$password))
@@ -68,6 +97,7 @@ class Auth extends CI_Controller {
                    'auth' =>''
                );
         $this->session->unset_userdata($userdata);
+		$this->session->sess_destroy();
 		redirect(site_url()."/auth");
 		
 	}//end method
