@@ -8,12 +8,13 @@
                       <li><a href="<?php echo site_url();?>/vendor/">Dashboard</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i>User<span class="fa fa-chevron-down"></span></a>
+				  <li><a href="<?php echo site_url();?>/vendor/viewProfile"><i class="fa fa-wrench"></i>Profile</a></li>
+                  <li><a><i class="fa fa-group"></i>User<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?php echo site_url();?>/vendor/userList">View User</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i>Hotels<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-group"></i>Hotels<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?php echo site_url();?>/vendor/hotelList">View Hotels</a></li>
                     </ul>

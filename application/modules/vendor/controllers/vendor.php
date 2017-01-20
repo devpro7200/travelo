@@ -48,6 +48,10 @@ class Vendor extends CI_Controller {
 	/*
 	
 	*/
+	public function viewProfile()
+	{
+		_vendorLayout("profile");
+	}
 	/*
 	*/
 	/**/
