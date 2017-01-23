@@ -20,6 +20,7 @@ class Admin extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->helper('form');
 		if(!$this->session->userdata('auth'))
 		{
 			redirect(site_url()."/auth/");
@@ -109,6 +110,11 @@ class Admin extends CI_Controller {
 		
 		_adminLayout("userList");
 	}
+	/* Insert Vendor details */
+	public function insertVendor()
+	 {
+	echo $this->input->post('name');
+	 }
 	
 
 }//end class

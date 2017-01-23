@@ -43,7 +43,9 @@
                   </div>
                   <div class="x_content">
 
-                    <form class="form-horizontal form-label-left" novalidate>
+                    <!--<form class="form-horizontal form-label-left" novalidate>-->
+					<?php $attributes = array('class' => 'form-horizontal form-label-left', 'id' => 'myform');
+					echo form_open_multipart('/admin/insertVendor', $attributes);?>
 
                       <p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a>
                       </p>
@@ -124,7 +126,7 @@
                           <button id="send" type="submit" class="btn btn-success">Submit</button>
                         </div>
                       </div>
-                    </form>
+                    <?php form_close();?>
                   </div>
                 </div>
               </div>
