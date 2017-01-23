@@ -53,10 +53,53 @@ class Admin extends CI_Controller {
 	{
 		_adminLayout("generalSetting");
 	}
+	/*
+	
+	*/
+	public function addCountry()
+	{
+		_adminLayout("addCountry");
+	}
 
 	/*
-	*/
 	
+	*/
+	public function countryList()
+	{
+		_adminLayout("countryList");
+	}
+	/*
+	
+	*/
+	public function addState()
+	{
+		_adminLayout("addState");
+	}
+
+	/*
+	
+	*/
+	public function stateList()
+	{
+		_adminLayout("stateList");
+	}
+	/*
+	
+	*/
+	public function addCity()
+	{
+		_adminLayout("addCity");
+	}
+
+	/*
+	
+	*/
+	public function cityList()
+	{
+		_adminLayout("cityList");
+	}
+	/*
+	*/
 	public function vendorList()
 	{
 		
@@ -77,7 +120,7 @@ class Admin extends CI_Controller {
 		
 	}
 	/**/
-	public function updaterVendor()
+	public function updateVendor()
 	{
 		
 		
