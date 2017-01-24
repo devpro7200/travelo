@@ -156,7 +156,29 @@ class Admin extends CI_Controller {
 	/* Insert Vendor details */
 	public function insertVendor()
 	 {
-	echo $this->input->post('name');
+	 	$user_name=$this->input->post('user_name');
+		$name= $this->input->post('name');
+		$email= $this->input->post('email');
+		$password= $this->input->post('password');
+		$phone= $this->input->post('phone');
+		$address= $this->input->post('address');
+		$create_date= date('Y-m-d H:i:s');
+		$ip_address = $this->input->ip_address();
+		$user_type= 2;
+		$data= array(
+						'user_name' => $user_name,
+						'password' => $password,
+						'user_type' => $user_type,
+						'create_date' => $create_date,
+						'ip_address' => $ip_address
+						
+		
+		
+		);
+		if($this->db->insert('user', $data)){
+		redirect(site_url()."/admin/vendorList"); 
+				
+			 }	
 	 }
 	
 
