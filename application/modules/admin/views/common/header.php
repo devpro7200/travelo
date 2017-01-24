@@ -44,7 +44,7 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <h2><?php echo $this->session->userdata('username');?></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -88,7 +88,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<?php echo base_url();?>/images/img.jpg" alt="">John Doe
+                    <img src="<?php echo base_url();?>/images/img.jpg" alt=""><?php echo $this->session->userdata('username');?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
