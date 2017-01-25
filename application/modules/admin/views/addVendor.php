@@ -49,7 +49,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="email" id="email" name="email" value="<?php echo set_value('email'); ?>" required="required" class="form-control col-md-7 col-xs-12"><span style="color:#FF0000"><?php echo form_error('user_name'); ?></span>
+                          <input type="email" id="email" name="email" value="<?php echo set_value('email'); ?>" required="required" class="form-control col-md-7 col-xs-12"><span style="color:#FF0000"><?php echo form_error('email'); ?></span>
                         </div>
                       </div>
                       <div class="item form-group">

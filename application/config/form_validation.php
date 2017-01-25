@@ -3,12 +3,12 @@ $config = array(
                  'vendorAdminForm' => array(
                                     array(
                                             'field' => 'user_name',
-                                            'label' => 'Username',
+                                            'label' => 'user_name',
                                             'rules' => 'required'
                                          ),
 									array(
                                             'field' => 'user_name',
-                                            'label' => 'Username',
+                                            'label' => 'user_name',
                                             'rules' => 'callback_username_check'
                                          ),
 									 array(
@@ -31,16 +31,7 @@ $config = array(
                                             'label' => 'email',
                                             'rules' => 'callback_email_check'
                                          ),
-									array(
-                                            'field' => 'phone',
-                                            'label' => 'phone',
-                                            'rules' => 'required'
-                                         ),	
-									array(
-                                            'field' => 'address',
-                                            'label' => 'address',
-                                            'rules' => 'required'
-                                         ),		  
+										  
 										 
                                     )
                                      
