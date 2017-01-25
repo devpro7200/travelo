@@ -173,19 +173,27 @@ class Admin extends CI_Controller {
 		$create_date= date('Y-m-d H:i:s');
 		$ip_address = $this->input->ip_address();
 		$user_type= 2;
-		 $data= array(
+		$data= array(
 						'user_name' => $user_name,
 						'password' => $password,
 						'user_type' => $user_type,
 						'user_email' => $user_email,
 						'create_date' => $create_date,
 						'ip_address' => $ip_address
-						
-		
-		
-		);
+						);
+							
 		if($this->db->insert('user', $data)){
-				redirect(site_url()."/admin/vendorList"); 
+				$user_id= $this->db->insert_id();
+				$userMeta= array(
+						'name'=> $name,
+						'address'=> $address,
+						'phone'=>$phone,
+		
+						);
+						if(_user_metaLayout($userMeta, $user_id))
+						{
+							redirect(site_url()."/admin/vendorList"); 
+						}
 			  	}		
 		}
 	}			
