@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Admin extends CI_Controller {
 
 	/**
@@ -20,7 +21,7 @@ class Admin extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('form');
+		$this->load->helper(array('form', 'url'));
 		if(!$this->session->userdata('auth'))
 		{
 			redirect(site_url()."/auth/");
@@ -156,19 +157,27 @@ class Admin extends CI_Controller {
 	/* Insert Vendor details */
 	public function insertVendor()
 	 {
+	    $this->load->library('form_validation');
+		if ($this->form_validation->run('vendorAdminForm') == FALSE)
+		{
+		 _adminLayout("addVendor");
+		}
+		else
+		{
 	 	$user_name=$this->input->post('user_name');
 		$name= $this->input->post('name');
-		$email= $this->input->post('email');
+		$user_email= $this->input->post('email');
 		$password= $this->input->post('password');
 		$phone= $this->input->post('phone');
 		$address= $this->input->post('address');
 		$create_date= date('Y-m-d H:i:s');
 		$ip_address = $this->input->ip_address();
 		$user_type= 2;
-		$data= array(
+		 $data= array(
 						'user_name' => $user_name,
 						'password' => $password,
 						'user_type' => $user_type,
+						'user_email' => $user_email,
 						'create_date' => $create_date,
 						'ip_address' => $ip_address
 						
@@ -176,10 +185,36 @@ class Admin extends CI_Controller {
 		
 		);
 		if($this->db->insert('user', $data)){
-		redirect(site_url()."/admin/vendorList"); 
-				
-			 }	
-	 }
-	
-
+				redirect(site_url()."/admin/vendorList"); 
+			  	}		
+		}
+	}			
+	public function email_check($email)
+		{
+		    $query = $this->db->query("SELECT * FROM user where user_email='$email'");
+		   	if($query->num_rows()>0)
+		    {
+			    $this->form_validation->set_message('email_check', 'The %s field can not be duplicate');
+				return FALSE;
+		    }
+			else
+			{
+				return TRUE;
+			}
+		}		
+	/*User name validation*/
+	public function username_check($user_name)
+		{
+		    $query = $this->db->query("SELECT * FROM user where user_name='$user_name'");
+		   	if($query->num_rows()>0)
+		    {
+			    $this->form_validation->set_message('username_check', 'The %s field can not be duplicate');
+				return FALSE;
+		    }
+			else
+			{
+				return TRUE;
+			}
+		}			
+		
 }//end class
