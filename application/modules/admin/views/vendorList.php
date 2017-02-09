@@ -25,7 +25,8 @@
  <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2 style="background: #0199cc; border-radius: 2px;margin: 5px; padding: 8px;"><a href="<?php echo site_url();?>/admin/addVendor/" >Add New Vendor</a> </h2>
+                    
+					<input type="button" class="btn btn-success" onclick="location.href='<?php echo base_url();?>admin/addVendor/';" value="Add New Vendor" />
                      <div class="clearfix"></div>
 					</div>
                   <div class="x_content">
