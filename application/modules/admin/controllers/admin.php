@@ -103,8 +103,13 @@ class Admin extends CI_Controller {
 	*/
 	public function vendorList()
 	{
-		
-		_adminLayout("vendorList");
+		$vendorquery= $this->db->query("Select *, getUserName(id) as name, getPhone(id) as phone from user where user_type=2");
+		$data=array();
+		foreach($vendorquery->result() as $obj)
+		{
+		$data['data'][]=$obj;
+		}
+		_adminLayout("vendorList",$data);
 	}
 	/*
 	

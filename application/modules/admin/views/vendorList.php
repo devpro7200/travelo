@@ -37,24 +37,31 @@
                       <thead>
                         <tr>
                           <th>Name</th>
-                          <th>Position</th>
-                          <th>Office</th>
-                          <th>Age</th>
-                          <th>Start date</th>
-                          <th>Salary</th>
+                          <th>User Name</th>
+                          <th>Email</th>
+						  <th>Phone</th>
+                          <th>Date</th>
+                          
                         </tr>
                       </thead>
 
 
                       <tbody>
+					  <?php 
+					  if( ! ini_get('date.timezone') )
+					{
+						date_default_timezone_set('Asia/Kolkata');
+					}
+					 foreach($data as $vendor){
+					  ?>
                         <tr>
-                          <td>Tiger Nixon</td>
-                          <td>System Architect</td>
-                          <td>Edinburgh</td>
-                          <td>61</td>
-                          <td>2011/04/25</td>
-                          <td>$320,800</td>
-                        </tr>
+                          <td><?php echo $vendor->name;?></td>
+                          <td><?php echo $vendor->user_name;?></td>
+                          <td><?php echo $vendor->user_email;?></td>
+						  <td><?php echo $vendor->phone;?></td>
+                           <td><?php echo date ("d/M/Y",strtotime($vendor->create_date));?></td>
+                         </tr>
+					<?php }?>	 
                         </tbody>
                     </table>
                   </div>

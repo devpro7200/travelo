@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.15.5
+-- version 4.4.15.4
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 20, 2017 at 03:58 PM
--- Server version: 5.5.48
+-- Generation Time: Feb 10, 2017 at 10:38 AM
+-- Server version: 5.1.73-community
 -- PHP Version: 5.4.45
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -14,11 +14,42 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `travelo`
 --
+
+DELIMITER $$
+--
+-- Functions
+--
+CREATE DEFINER=`root`@`localhost` FUNCTION `getPhone`(`ids` INT(4)) RETURNS varchar(255) CHARSET latin1
+    NO SQL
+BEGIN
+
+DECLARE phones varchar(255);
+
+select user_metavalue INTO phones FROM user_meta where user_id=ids and user_metakey='phone';
+ 
+ RETURN phones;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `getUserName`(`ids` INT(4)) RETURNS varchar(255) CHARSET latin1
+    NO SQL
+begin 
+
+DECLARE uname varchar(255);
+
+SELECT user_metavalue into uname from user_meta where user_id=ids and user_metakey='name';
+
+
+RETURN uname;
+
+end$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -131,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `hotel_meta` (
   `hotel_id` int(10) DEFAULT NULL,
   `hotel_metakey` varchar(255) DEFAULT NULL,
   `hotel_metavalue` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `hotel_meta`
@@ -193,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `room_meta` (
   `room_id` bigint(10) DEFAULT NULL,
   `room_metakey` varchar(255) DEFAULT NULL,
   `room_metavalue` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `room_meta`
@@ -247,19 +278,22 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_name` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `user_type` int(2) DEFAULT NULL COMMENT '1=>admin,2=>vendor,3=>user',
+  `user_email` varchar(100) NOT NULL,
   `create_date` datetime DEFAULT NULL,
   `last_login_date` datetime DEFAULT NULL,
   `ip_address` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `user_name`, `password`, `user_type`, `create_date`, `last_login_date`, `ip_address`) VALUES
-(1, 'admin', 'admin', 1, '2017-01-19 00:00:00', NULL, '32134'),
-(2, 'aditya', 'aditya', 2, '2017-01-19 00:00:00', NULL, '321423'),
-(3, 'nitesh', 'nitesh', 3, '2017-01-19 00:00:00', NULL, '3214');
+INSERT INTO `user` (`id`, `user_name`, `password`, `user_type`, `user_email`, `create_date`, `last_login_date`, `ip_address`) VALUES
+(1, 'admin', 'admin', 1, '', '2017-01-19 00:00:00', NULL, '32134'),
+(2, 'aditya', 'aditya', 2, 'rathi.aditya@rsystems.com', '2017-01-19 00:00:00', NULL, '321423'),
+(3, 'nitesh', 'nitesh', 3, 'niteshsingh101@gmail.com', '2017-01-19 00:00:00', NULL, '3214'),
+(17, 'tejsingh460', 'asdf', 2, 'tejsingh401@gmail.com', '2017-01-25 10:44:31', NULL, '::1'),
+(18, 'krishna420', 'asdf', 2, 'krishna.gupta@rsystems.com', '2017-01-25 10:52:48', NULL, '::1');
 
 -- --------------------------------------------------------
 
@@ -272,7 +306,7 @@ CREATE TABLE IF NOT EXISTS `user_meta` (
   `user_id` int(5) DEFAULT NULL COMMENT 'it''s a reference key from user table as field id',
   `user_metakey` varchar(255) NOT NULL,
   `user_metavalue` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user_meta`
@@ -284,7 +318,13 @@ INSERT INTO `user_meta` (`id`, `user_id`, `user_metakey`, `user_metavalue`) VALU
 (3, 2, 'phone', '454454'),
 (4, 2, 'address', 'new ashok nagar e-263'),
 (5, 1, 'user_type', '1'),
-(6, 2, 'user_type', '2');
+(6, 2, 'user_type', '2'),
+(10, 17, 'name', 'Tej Bahadur Singh'),
+(11, 17, 'address', '44c, Block-11, sector-73, Noida'),
+(12, 17, 'phone', '9560914590'),
+(13, 18, 'name', 'Krishna Gupta'),
+(14, 18, 'address', 'Plot No: 226, G3, \r\nSector-4 , Vaishali\r\n'),
+(15, 18, 'phone', '9560914590');
 
 --
 -- Indexes for dumped tables
@@ -412,7 +452,7 @@ ALTER TABLE `hotel_comments`
 -- AUTO_INCREMENT for table `hotel_meta`
 --
 ALTER TABLE `hotel_meta`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `rooms`
 --
@@ -427,7 +467,7 @@ ALTER TABLE `room_comments`
 -- AUTO_INCREMENT for table `room_meta`
 --
 ALTER TABLE `room_meta`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `site_setting`
 --
@@ -442,12 +482,12 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `user_meta`
 --
 ALTER TABLE `user_meta`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
